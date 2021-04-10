@@ -20,4 +20,3 @@ const { createTitle, updateTitle } = exportFunctions;
 // automaticallyGeneratingListOfPeople();
 // setStyles();
 renderGame();
-console.log(title.style);

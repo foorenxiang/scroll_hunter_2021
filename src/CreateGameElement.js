@@ -1,6 +1,7 @@
-const createGameElement = (element, id, innerText) => {
+const createGameElement = (element, id, className, innerText) => {
   const createdElement = document.createElement(element);
   id && (createdElement.id = id);
+  className && (createdElement.className = className);
   innerText && (createdElement.innerText = innerText);
   return createdElement;
 };
