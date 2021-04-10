@@ -18,7 +18,7 @@ const renderPageSetup = () => {
 const renderStaticElements = () => {
   const renderTitle = () =>
     createGameElement(
-      'header',
+      'div',
       'title',
       '',
       'Welcome to Scroll Hunter! Keep scrolling till you find the secret text!'
