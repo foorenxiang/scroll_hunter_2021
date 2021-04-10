@@ -16,7 +16,12 @@ const renderPageSetup = () => {
 
 const renderStaticElements = () => {
   const renderTitle = () =>
-    createGameElement('header', 'title', '', 'Welcome to the scrolling game');
+    createGameElement(
+      'header',
+      'title',
+      '',
+      'Welcome to Scroll Hunter! Keep scrolling till you find the secret text!'
+    );
 
   const renderFooter = () =>
     createGameElement('footer', 'footer', '', "Where are you going? You've found the bottom :D");
