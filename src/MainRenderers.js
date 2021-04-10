@@ -1,9 +1,10 @@
 import createGameElement from './utils/createGameElement.js';
 import { setGameStyles } from './GameStyles.js';
 
-const bgMusicFile = './backgroundMusic.mp3';
-const victoryMusicFile = './victoryMusic.mp3';
-
+const bgMusicFile =
+  'https://github.com/foorenxiang/scroll_hunter_2021/blob/master/src/backgroundMusic.mp3?raw=true';
+const victoryMusicFile =
+  'https://github.com/foorenxiang/scroll_hunter_2021/blob/master/src/victoryMusic.mp3?raw=true';
 const backgroundMusic = new Audio(bgMusicFile);
 const victoryMusic = new Audio(victoryMusicFile);
 
