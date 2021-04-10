@@ -1,7 +1,7 @@
 import { setElementsStyle } from './utils/reactStyle.js';
 const dev = false;
 const devPageHeight = window.innerHeight * 0.9;
-const prodPageHeight = window.innerHeight * 30;
+const prodPageHeight = window.innerHeight * 200;
 
 const defaultBackgroundColor = '#333';
 
@@ -27,29 +27,30 @@ const gameStyles = () => {
     },
     '#foundMe': {
       flexGrow: 0,
-      backgroundColor: 'red',
-      fontSize: '1em',
+      // backgroundColor: 'red',
+      color: '#808080',
+      fontSize: '0.5em',
     },
-    '.fillerNode': {
-      color: defaultBackgroundColor,
-    },
-    footer: {
-      backgroundColor: defaultBackgroundColor,
+    '#title': {
+      flexGrow: 0,
+      padding: '20px 0',
     },
   };
+  styles['footer'] = styles['#title'];
+
   const foundMe = document.querySelector('#foundMe');
   const foundMePreviousSibling = `#${foundMe?.previousElementSibling?.id}`;
   const foundMeNextSibling = `#${foundMe?.nextElementSibling?.id}`;
-  foundMePreviousSibling &
-    (styles[foundMePreviousSibling] = {
-      background:
-        'rgb(51,51,51) linear-gradient(180deg, rgba(51,51,51,1) 0%, rgba(51,51,51,1) 30%, rgba(255,0,0,1) 100%)',
-    });
-  foundMeNextSibling &
-    (styles[foundMeNextSibling] = {
-      background:
-        'rgb(51,51,51) linear-gradient(0deg, rgba(51,51,51,1) 0%, rgba(51,51,51,1) 30%, rgba(255,0,0,1) 100%)',
-    });
+  // foundMePreviousSibling &
+  //   (styles[foundMePreviousSibling] = {
+  //     background:
+  //       'rgb(51,51,51) linear-gradient(180deg, rgba(51,51,51,1) 0%, rgba(51,51,51,1) 30%, rgba(255,0,0,1) 100%)',
+  //   });
+  // foundMeNextSibling &
+  //   (styles[foundMeNextSibling] = {
+  //     background:
+  //       'rgb(51,51,51) linear-gradient(0deg, rgba(51,51,51,1) 0%, rgba(51,51,51,1) 30%, rgba(255,0,0,1) 100%)',
+  //   });
   return styles;
 };
 
