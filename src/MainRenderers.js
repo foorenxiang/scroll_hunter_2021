@@ -42,7 +42,6 @@ const renderFoundMeElements = () => {
   const foundMe = document.querySelector('#foundMe');
 
   const numberOfNodesToGenerate = Math.floor(Math.random() * 200);
-  console.log(numberOfNodesToGenerate);
 
   const foundMeParent = foundMe.parentElement;
   let i;
