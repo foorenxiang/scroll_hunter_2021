@@ -5,6 +5,7 @@ const bgMusicFile =
   'https://github.com/foorenxiang/scroll_hunter_2021/blob/master/src/backgroundMusic.mp3?raw=true';
 const victoryMusicFile =
   'https://github.com/foorenxiang/scroll_hunter_2021/blob/master/src/victoryMusic.mp3?raw=true';
+
 const backgroundMusic = new Audio(bgMusicFile);
 const victoryMusic = new Audio(victoryMusicFile);
 
@@ -15,24 +16,8 @@ const renderPageSetup = () => {
   body.appendChild(setPageHeight());
 };
 
-const renderStaticElements = () => {
-  const renderTitle = () =>
-    createGameElement(
-      'div',
-      'title',
-      '',
-      'Welcome to Scroll Hunter! Keep scrolling till you find the secret text!'
-    );
-
-  const renderFooter = () =>
-    createGameElement('footer', 'footer', '', "Where are you going? You've found the bottom :D");
-
-  const pageContainer = document.querySelector('#pageContainer');
-  pageContainer.prepend(renderTitle());
-  pageContainer.appendChild(renderFooter());
-};
-
 const foundMeText = 'You found me! Tap me to win!';
+
 const renderFoundMeElements = () => {
   const renderFoundMe = () => createGameElement('div', 'foundMe', '', foundMeText);
 
@@ -58,6 +43,36 @@ const renderFoundMeElements = () => {
   }
 };
 
+const renderStaticElements = () => {
+  const renderTitle = () =>
+    createGameElement('div', 'title', '', "Where are you going? You've found the top :D");
+
+  const renderFooter = () =>
+    createGameElement('footer', 'footer', '', "Where are you going? You've found the bottom :D");
+
+  const pageContainer = document.querySelector('#pageContainer');
+  pageContainer.prepend(renderTitle());
+  pageContainer.appendChild(renderFooter());
+};
+
+const renderAnchorElements = () => {
+  const renderAnchor = () =>
+    createGameElement(
+      'div',
+      'anchor',
+      '',
+      'Welcome to Scroll Hunter! Keep scrolling till you find the secret text!'
+    );
+
+  const pageContainerChildCount = pageContainer.children.length;
+  const anchorPosition = Math.floor(pageContainerChildCount / 2);
+  pageContainer.insertBefore(renderAnchor(), pageContainer.children[anchorPosition]);
+
+  const anchorElement = document.querySelector('#anchor');
+  anchorElement.previousElementSibling.innerText = 'Scroll up? ^^^';
+  anchorElement.nextElementSibling.innerText = 'Scroll down? VVV';
+};
+
 const erasePage = () => {
   const body = document.querySelector('body');
   body.innerHTML = '';
@@ -69,11 +84,7 @@ const tapOnMe = () => {
   foundMe.addEventListener('click', (e) => {
     if (e.target.innerText === foundMeText) {
       backgroundMusic.pause();
-      const victoryMusicPromise = victoryMusic.play();
-      if (victoryMusicPromise !== undefined) {
-        victoryMusicPromise.then(() => {}).catch((e) => console.log('Unable to play music'));
-      }
-
+      playVictoryMusic();
       e.target.innerText = newText;
     } else {
       victoryMusic.pause();
@@ -83,16 +94,36 @@ const tapOnMe = () => {
   });
 };
 
-export const fullPageRender = () => {
-  renderPageSetup();
-  renderFoundMeElements();
-  renderStaticElements();
-  setGameStyles();
-  tapOnMe();
+const playBackgroundMusic = () => {
   const backgroundMusicPromise = backgroundMusic.play();
   if (backgroundMusicPromise !== undefined) {
     backgroundMusicPromise
       .then(() => {})
-      .catch((e) => console.log('Failed to play background music on this device'));
+      .catch((e) => console.log('Unable to play music on this device'));
   }
+};
+
+const playVictoryMusic = () => {
+  const victoryMusicPromise = victoryMusic.play();
+  if (victoryMusicPromise !== undefined) {
+    victoryMusicPromise
+      .then(() => {})
+      .catch((e) => console.log('Unable to play music on this device'));
+  }
+};
+
+const scrollToAnchor = () => {
+  location.href = '#';
+  location.href = `#${document.querySelector('#anchor').previousElementSibling.id}`;
+};
+
+export const fullPageRender = () => {
+  renderPageSetup();
+  renderFoundMeElements();
+  renderStaticElements();
+  renderAnchorElements();
+  setGameStyles();
+  playBackgroundMusic();
+  tapOnMe();
+  scrollToAnchor();
 };

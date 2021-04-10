@@ -3,9 +3,8 @@ const dev = false;
 const devPageHeight = window.innerHeight * 0.9;
 const prodPageHeight = window.innerHeight * 200;
 
-const defaultBackgroundColor = '#333';
-
 const gameStyles = () => {
+  const defaultBackgroundColor = '#333';
   const styles = {
     body: { backgroundColor: '#777', color: 'white', padding: 0, margin: 0 },
     '#pageContainer': {
@@ -34,22 +33,15 @@ const gameStyles = () => {
       flexGrow: 0,
       padding: '20px 0',
     },
+    '#anchor': {
+      flexGrow: 0,
+      padding: '100px 0',
+    },
   };
   styles['footer'] = styles['#title'];
+  styles[`#${document.querySelector('#anchor').previousElementSibling?.id}`] = styles['#anchor'];
+  styles[`#${document.querySelector('#anchor').nextElementSibling?.id}`] = styles['#anchor'];
 
-  const foundMe = document.querySelector('#foundMe');
-  const foundMePreviousSibling = `#${foundMe?.previousElementSibling?.id}`;
-  const foundMeNextSibling = `#${foundMe?.nextElementSibling?.id}`;
-  // foundMePreviousSibling &
-  //   (styles[foundMePreviousSibling] = {
-  //     background:
-  //       'rgb(51,51,51) linear-gradient(180deg, rgba(51,51,51,1) 0%, rgba(51,51,51,1) 30%, rgba(255,0,0,1) 100%)',
-  //   });
-  // foundMeNextSibling &
-  //   (styles[foundMeNextSibling] = {
-  //     background:
-  //       'rgb(51,51,51) linear-gradient(0deg, rgba(51,51,51,1) 0%, rgba(51,51,51,1) 30%, rgba(255,0,0,1) 100%)',
-  //   });
   return styles;
 };
 
