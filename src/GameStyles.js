@@ -27,8 +27,7 @@ const gameStyles = () => {
     },
     '#foundMe': {
       flexGrow: 0,
-      // backgroundColor: 'red',
-      color: '#808080',
+      color: '#505050',
       fontSize: '0.5em',
     },
     '#title': {
