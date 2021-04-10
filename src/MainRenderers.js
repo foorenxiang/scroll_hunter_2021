@@ -1,7 +1,7 @@
-import createGameElement from './CreateGameElement.js';
+import createGameElement from './utils/createGameElement.js';
 import { setGameStyles } from './GameStyles.js';
 
-const bgMusicFile = '';
+const bgMusicFile = './backgroundMusic.mp3';
 const victoryMusicFile = './victoryMusic.mp3';
 
 const backgroundMusic = new Audio(bgMusicFile);
@@ -79,21 +79,15 @@ const tapOnMe = () => {
 };
 
 export const fullPageRender = () => {
-  const backgroundMusicPromise = backgroundMusic.play();
-  if (backgroundMusicPromise !== undefined) {
-    backgroundMusicPromise
-      .then(function () {
-        // Automatic playback started!
-      })
-      .catch(function (error) {
-        // Automatic playback failed.
-        console.log('Failed to play background music on this device');
-      });
-  }
-
   renderPageSetup();
   renderFoundMeElements();
   renderStaticElements();
   setGameStyles();
   tapOnMe();
+  const backgroundMusicPromise = backgroundMusic.play();
+  if (backgroundMusicPromise !== undefined) {
+    backgroundMusicPromise
+      .then(() => {})
+      .catch((e) => console.log('Failed to play background music on this device'));
+  }
 };
